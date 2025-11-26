@@ -5,8 +5,8 @@ from app.user.models import User
 
 
 # Create User
-def create_user(name: str, email):
-  user = User(name:name, email=email)
+def create_user_service(name: str, email:str):
+  user = User(name=name, email=email)
   with Session(engine) as session:
     session.add(user)
     session.commit()
@@ -19,12 +19,7 @@ def get_all_users():
     statement = select(User)
     users = session.exec(statement)
     return users.all()
-  
-def get_user(user_id:int):
-  with Session(engine) as session:
-    statement = select(User).where(User.id == user_id)
-    user = session.exec(statement)
-    return user.first()
+
     
   
     
